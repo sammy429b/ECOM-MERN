@@ -1,6 +1,22 @@
 import {createContext, useContext, useState, ReactNode, useEffect} from 'react';
 
 
+interface Rating {
+    rate: number;
+    count: number;
+  }
+  
+  interface Product {
+    id: number;
+    title: string;
+    price: number;
+    category: string;
+    description: string;
+    image: string;
+    qty: number;
+    rating: Rating;
+  }
+
 interface CartContextType {
     cart: [];
     setCart: React.Dispatch<React.SetStateAction<[]>>;
@@ -52,47 +68,105 @@ export const CartProvider: React.FC<CartProviderProps> = ({children}) => {
     }   
     , [totalPrice]);   
 
-    const handleAddToCart = (product: any) => {
-        const exist = cart.find((item: any) => item.id === product.id);
-        if (exist) {
-            setCart(cart.map((item: any) => item.id === product.id ? {...exist, qty: exist.qty + 1} : item));
-        } else {
-            setCart([...cart, {...product, qty: 1}]);
-        }
-        setTotalItems(parseInt(totalItems) + 1);
-        setTotalPrice((parseInt(totalPrice) + product.price).toFixed(2)); 
-    };
-
-    const handleRemoveFromCart = (id: number) => {
-        setCart(cart.filter((item: any) => item.id !== id));
-    };
-
-    const handleUpdateCartQty = (id: number, qty: number) => {
-        setCart(cart.map((item: any) => item.id === id ? {...item, qty: qty} : item));
-    };
-
-    const handleRemoveAllFromCart = () => {
+    const handleAddToCart = (product: Product) => {
+        if (!product || !product.id || !product.price) return;
+    
+        setCart((prevCart:Product[]) => {
+          const exist = prevCart.find((item:Product) => item.id === product.id);
+          const newCart = exist
+            ? prevCart.map((item:Product) =>
+                item.id === product.id
+                  ? { ...item, qty: (item.qty || 1) + 1 }
+                  : item
+              )
+            : [...prevCart, { ...product, qty: 1 }];
+    
+          // Update total items and price
+          const newTotalItems = newCart.reduce((acc, item) => acc + (item.qty || 0), 0);
+          const newTotalPrice = newCart.reduce((acc, item) => acc + (item.price * (item.qty || 0)), 0);
+    
+          setTotalItems(newTotalItems);
+          setTotalPrice(newTotalPrice);
+    
+          return newCart;
+        });
+      };
+    
+      const handleRemoveFromCart = (id: number) => {
+        setCart((prevCart:Product[]) => {
+          const newCart = prevCart.filter((item:Product) => item.id !== id);
+    
+          // Update total items and price
+          const newTotalItems = newCart.reduce((acc:number, item:Product) => acc + (item.qty || 0), 0);
+          const newTotalPrice = newCart.reduce((acc:number, item:Product) => acc + (item.price * (item.qty || 0)), 0);
+    
+          setTotalItems(newTotalItems);
+          setTotalPrice(newTotalPrice);
+    
+          return newCart;
+        });
+      };
+    
+      const handleUpdateCartQty = (id: number, qty: number) => {
+        if (qty < 0) return;
+    
+        setCart((prevCart: Product[]) => {
+          const newCart = prevCart.map((item:Product) =>
+            item.id === id ? { ...item, qty } : item
+          ).filter((item:Product) => item.qty > 0);
+    
+          // Update total items and price
+          const newTotalItems = newCart.reduce((acc:number, item:Product) => acc + (item.qty || 0), 0);
+          const newTotalPrice = newCart.reduce((acc:number, item:Product) => acc + (item.price * (item.qty || 0)), 0);
+    
+          setTotalItems(newTotalItems);
+          setTotalPrice(newTotalPrice);
+    
+          return newCart;
+        });
+      };
+    
+      const handleRemoveAllFromCart = () => {
         setCart([]);
-    };
-
-    const handleIncreaseQty = (id: number) => {
-        const product = cart.find((item: any) => item.id === id);
-        product.qty += 1;
-        setCart([...cart]);
-        setTotalItems(parseInt(totalItems) + 1);
-        setTotalPrice((parseInt(totalPrice) + product.price).toFixed(2));
-    };
-
-    const handleDecreaseQty = (id: number) => {
-        const product = cart.find((item: any) => item.id === id);
-        if (product.qty > 1) {
-            product.qty -= 1;
-            setCart([...cart]);
-            setTotalItems(parseInt(totalItems) - 1);
-            setTotalPrice((parseInt(totalPrice) - product.price).toFixed(2));
-        }   
-
-    }
+        setTotalItems(0);
+        setTotalPrice(0);
+      };
+    
+      const handleIncreaseQty = (id: number) => {
+        setCart((prevCart:Product[]) => {
+          const newCart = prevCart.map((item:Product) =>
+            item.id === id ? { ...item, qty: (item.qty || 1) + 1 } : item
+          );
+    
+          // Update total items and price
+          const newTotalItems = newCart.reduce((acc:number, item:Product) => acc + (item.qty || 0), 0);
+          const newTotalPrice = newCart.reduce((acc:number, item:Product) => acc + (item.price * (item.qty || 0)), 0);
+    
+          setTotalItems(newTotalItems);
+          setTotalPrice(newTotalPrice);
+    
+          return newCart;
+        });
+      };
+    
+      const handleDecreaseQty = (id: number) => {
+        setCart((prevCart:Product[]) => {
+          const newCart = prevCart.map((item: Product) =>
+            item.id === id
+              ? { ...item, qty: Math.max((item.qty || 1) - 1, 0) }
+              : item
+          ).filter((item: Product) => item.qty > 0);
+    
+          // Update total items and price
+          const newTotalItems = newCart.reduce((acc:number, item: Product) => acc + (item.qty || 0), 0);
+          const newTotalPrice = newCart.reduce((acc:number, item: Product) => acc + (item.price * (item.qty || 0)), 0);
+    
+          setTotalItems(newTotalItems);
+          setTotalPrice(newTotalPrice);
+    
+          return newCart;
+        });
+      };
 
 
     return (
