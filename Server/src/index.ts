@@ -17,6 +17,7 @@ const accessOrigin = process.env.ORIGIN_URL || 'http://localhost:3000';
 
 const corsOptions = {
     origin: accessOrigin,
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 };
 
