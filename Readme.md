@@ -1,8 +1,8 @@
-# User Authentication System
+# Ecommerce website Using MERN STACK
 
 <!-- ## Why Did I Build This? -->
 
-The User Authentication System was built to provide a secure and scalable way to manage user access and authentication in web applications. In modern web development, protecting user data and ensuring secure login processes are crucial. This project aims to demonstrate a robust authentication mechanism using best practices.
+<!-- The User Authentication System was built to provide a secure and scalable way to manage user access and authentication in web applications. In modern web development, protecting user data and ensuring secure login processes are crucial. This project aims to demonstrate a robust authentication mechanism using best practices. -->
 
 
 ## Built with :
@@ -23,7 +23,7 @@ The User Authentication System was built to provide a secure and scalable way to
 1.  **Clone the Repository**
 
     ```bash
-    git clone https://github.com/sammy429b/UserAuthSys.git
+    git clone https://github.com/sammy429b/ECOM-MERN.git
     cd UserAuthSys
     ```
 
@@ -88,7 +88,7 @@ The User Authentication System was built to provide a secure and scalable way to
 6. **Responsive UI Design**:
    - Developed a responsive UI with React.js and Shadcn.
 
-## Future Enhancements
+<!-- ## Future Enhancements
 
 1. **Role-Based Access Control (RBAC)**:
    - Implement different user roles (e.g., admin, user) with specific permissions.
@@ -99,7 +99,7 @@ The User Authentication System was built to provide a secure and scalable way to
 4. **Enhanced Security**:
    - Add features like account lockout after multiple failed login attempts and email verification.
 5. **Scalability Improvements**:
-   - Optimize the system for better performance under high load conditions, including horizontal scaling strategies.
+   - Optimize the system for better performance under high load conditions, including horizontal scaling strategies. -->
 
 
 
