@@ -19,10 +19,10 @@ interface ProductCardProps {
 
 const ProductCard:React.FC<ProductCardProps> = ({ details }) =>{
 
-  const ratecount = details.rating.rate;
-  const rate = [...Array(parseInt(ratecount)).keys()];
+  const ratecount = Math.round(details.rating.rate);
+  const rate = [...Array(ratecount).keys()];
 
- const {handleAddToCart, cart} = useCart();
+ const {handleAddToCart} = useCart();
 //  console.log(cart);
 
  const onClick  = () => {
