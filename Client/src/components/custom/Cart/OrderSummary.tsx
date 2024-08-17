@@ -14,8 +14,8 @@ function OrderSummary() {
                 Order Summary</h2>
               <div className="mt-8">
                 <div className="flex items-center justify-between pb-6">
-                  <p className="font-normal text-lg leading-8 text-black">3 Items</p>
-                  <p className="font-medium text-lg leading-8 text-black">$480.00</p>
+                  <p className="font-normal text-lg leading-8 text-black">{totalItems}</p>
+                  <p className="font-medium text-lg leading-8 text-black">${totalPrice}</p>
                 </div>
                 <form>
                   <label className="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">Shipping
