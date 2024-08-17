@@ -15,30 +15,23 @@ const app: Express = express();
 const port = process.env.SERVER_PORT || 5000;
 const accessOrigin = process.env.ORIGIN_URL || 'http://localhost:3000';
 
-app.use(cors({
+const corsOptions = {
     origin: accessOrigin,
-    credentials: true
-}));
+    credentials: true,
+};
 
-// Proxy
-app.use(
-    '/weather',
-    createProxyMiddleware({
-        target: accessOrigin,
-        changeOrigin: true,
-        pathRewrite: {
-            '^/weather': '', // This rewrites /weather to /
-        },
-    })
-);
+// const corsOptions = {
+//     origin: 'http://localhost:5173', // Frontend URL
+//     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+// };
 
 // Middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-
 // Routes
-app.use("/auth", authRoute);
+app.use("/", authRoute);
 app.use("/", PasswordRoute);
 
 // Base route
@@ -46,15 +39,31 @@ app.get("/", (req: Request, res: Response) => {
     res.json({ message: "TypeScript with express" });
 });
 
+// Proxy
+app.use(
+    '/weather',
+    createProxyMiddleware({
+        target: accessOrigin, // Replace with the actual weather API URL
+        changeOrigin: true,
+        pathRewrite: {
+            '^/weather': '', // Rewrites /weather to /
+        },
+    })
+);
+
 // Error handling middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
-    res.status(500).send('Something went wrong!');
+    res.status(500).json({ error: 'Something went wrong!', details: err.message });
 });
 
 // Start the server after DB connection
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-    console.log(`CORS Origin: ${accessOrigin}`);
-    DBconnection();
+DBconnection().then(() => {
+    app.listen(port, () => {
+        console.log(`Server running at http://localhost:${port}`);
+        console.log(`CORS Origin: ${accessOrigin}`);
+    });
+}).catch(err => {
+    console.error("Failed to connect to the database", err);
+    process.exit(1);
 });
