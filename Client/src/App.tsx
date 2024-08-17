@@ -22,12 +22,9 @@ function App() {
         <Routes>
           <Route element={<PublicRoute/>}>
           <Route path="/" element={<Index />}></Route>
-          <Route path="/category/:category" element={<Category />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
           <Route path="/password/email" element={<ForgotPasswordOTP />}></Route>
-          
           </Route>
           <Route element={<ForgotPasswordRoute/>}>
             <Route path="/password/reset" element={<ForgotPassword />}></Route>
@@ -36,10 +33,11 @@ function App() {
             <Route path="/password/otp" element={<OTP />}></Route>
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path="/main" element={<Main />}></Route>
+            <Route path="/main" element={<Index />}></Route>
             <Route path="/password/change" element={<ChangePassword />}></Route>
           </Route>
-          {/* 404 not found */}
+          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/category/:category" element={<Category />}></Route>
           <Route path="*" element={<Page_Not_Found/>}></Route>
         </Routes>
         
