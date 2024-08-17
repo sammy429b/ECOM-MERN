@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 function Category() {
   const { category } = useParams();
-  const selectedCategory = category.toLowerCase(); // Ensure case-insensitive comparison
+  const selectedCategory:string | undefined = category?.toLowerCase(); // Ensure case-insensitive comparison
   const filteredProducts = data.filter(product => product.category.toLowerCase() === selectedCategory);
 
   if (filteredProducts.length === 0) {

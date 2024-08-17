@@ -16,7 +16,7 @@ type ChangePasswordType = z.infer<typeof ChangePasswordSchema>;
 
 const ChangePassword = () => {
     const Navigate = useNavigate();
-    console.log("ChangePassword page");
+    // console.log("ChangePassword page");
     const { userMailId } = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
     const { register, handleSubmit, formState: { errors }, setError } = useForm<ChangePasswordType>({
@@ -34,13 +34,13 @@ const ChangePassword = () => {
             return;
         }
         
-        console.log("Submitted values:", values);
+        // console.log("Submitted values:", values);
         setLoading(true);
         try {
             const response = await axios.put(ApiConfig.change, values, {
                 withCredentials: true,
             });
-            console.log("Response:", response);
+            // console.log("Response:", response);
             if (response.status === 200) {
                 alert("Password changed successfully");
                 Navigate("/");

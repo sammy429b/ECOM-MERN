@@ -11,7 +11,9 @@ interface CartContextType {
     handleAddToCart: (product: any) => void;
     handleRemoveFromCart: (id: number) => void;
     handleUpdateCartQty: (id: number, qty: number) => void;
-    habdleRemoveAllFromCart: () => void;
+    handleRemoveAllFromCart: () => void;
+    handleIncreaseQty: (id: number) => void;
+    handleDecreaseQty: (id: number) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -57,8 +59,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({children}) => {
         } else {
             setCart([...cart, {...product, qty: 1}]);
         }
-        setTotalItems(totalItems + 1);
-        setTotalPrice(totalPrice + product.price); 
+        setTotalItems(parseInt(totalItems) + 1);
+        setTotalPrice((parseInt(totalPrice) + product.price).toFixed(2)); 
     };
 
     const handleRemoveFromCart = (id: number) => {
@@ -69,13 +71,32 @@ export const CartProvider: React.FC<CartProviderProps> = ({children}) => {
         setCart(cart.map((item: any) => item.id === id ? {...item, qty: qty} : item));
     };
 
-    const habdleRemoveAllFromCart = () => {
+    const handleRemoveAllFromCart = () => {
         setCart([]);
     };
 
+    const handleIncreaseQty = (id: number) => {
+        const product = cart.find((item: any) => item.id === id);
+        product.qty += 1;
+        setCart([...cart]);
+        setTotalItems(parseInt(totalItems) + 1);
+        setTotalPrice((parseInt(totalPrice) + product.price).toFixed(2));
+    };
+
+    const handleDecreaseQty = (id: number) => {
+        const product = cart.find((item: any) => item.id === id);
+        if (product.qty > 1) {
+            product.qty -= 1;
+            setCart([...cart]);
+            setTotalItems(parseInt(totalItems) - 1);
+            setTotalPrice((parseInt(totalPrice) - product.price).toFixed(2));
+        }   
+
+    }
+
 
     return (
-        <CartContext.Provider value={{cart, setCart, totalItems, setTotalItems, totalPrice, setTotalPrice, handleAddToCart, handleRemoveFromCart, handleUpdateCartQty}}>
+        <CartContext.Provider value={{cart, setCart, totalItems, setTotalItems, totalPrice, setTotalPrice, handleAddToCart, handleRemoveFromCart, handleUpdateCartQty, handleRemoveAllFromCart, handleIncreaseQty, handleDecreaseQty}}>
             {children}
         </CartContext.Provider>
     );

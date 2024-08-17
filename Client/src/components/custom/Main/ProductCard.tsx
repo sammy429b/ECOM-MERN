@@ -1,15 +1,29 @@
 import { useCart } from "@/context/useCart";
 import EmptyStar from "../../../assets/star.png";
 import FilledStar from "../../../assets/starfill.png";
+import React from "react";
 
 
-function ProductCard({ details }) {
+interface ProductCardProps {
+  details: {
+    id: number;
+    title: string;
+    price: number;
+    rating: {
+      rate: number;
+    };
+    image: string;
+  };
+}
+
+
+const ProductCard:React.FC<ProductCardProps> = ({ details }) =>{
 
   const ratecount = details.rating.rate;
   const rate = [...Array(parseInt(ratecount)).keys()];
 
  const {handleAddToCart, cart} = useCart();
- console.log(cart);
+//  console.log(cart);
 
  const onClick  = () => {
     handleAddToCart(details); 
