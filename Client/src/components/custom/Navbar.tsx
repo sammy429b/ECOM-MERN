@@ -1,16 +1,18 @@
+import { useAuth } from "@/context/useAuth";
 import { useCart } from "@/context/useCart";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 
 function Navbar() {
-    const isUser = sessionStorage.getItem("token");
+    const { isAuthenticated,handleLogoutAuth } = useAuth();  
     const navigate = useNavigate();
 
     const {totalItems, totalPrice} = useCart();
 
     const handleLogout = () => {
-        navigate("/login");
+        handleLogoutAuth();
         sessionStorage.removeItem("token");
+        navigate("/login");
 
     }
 
@@ -113,7 +115,7 @@ function Navbar() {
                                 tabIndex={0}
                                 className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
                             >
-                                {isUser ? (<div className="card-body">
+                                {isAuthenticated ? (<div className="card-body">
                                     <span className="font-bold text-lg">{totalItems} Items</span>
                                     <span className="text-info">Subtotal: ${totalPrice}</span>
                                     <div className="card-actions">
@@ -136,7 +138,7 @@ function Navbar() {
                                         </div>)}
                             </div>
                         </div>
-                        {isUser ? (<div className="dropdown dropdown-end">
+                        {isAuthenticated ? (<div className="dropdown dropdown-end">
                             <div
                                 tabIndex={0}
                                 role="button"
@@ -145,7 +147,7 @@ function Navbar() {
                                 <div className="w-10 rounded-full">
                                     <img
                                         alt="Tailwind CSS Navbar component"
-                                        src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                                        src="https://github.com/shadcn.png"
                                     />
                                 </div>
                             </div>
