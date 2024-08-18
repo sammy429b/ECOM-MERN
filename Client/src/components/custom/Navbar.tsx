@@ -24,29 +24,29 @@ function Navbar() {
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
-                                <NavLink to="/" className={({ isActive }) => isActive ? "bg-black text-w" : ""}>
+                                <NavLink to="/" className={({ isActive }) => isActive ? "bg-black text-white" : ""}>
                                     All
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/category/men" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                                <NavLink to="/category/men" className={({ isActive }) => isActive ? "bg-black text-white" : ""}>
                                     Men's clothing
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/category/women" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                                <NavLink to="/category/women" className={({ isActive }) => isActive ? "bg-black text-white" : ""}>
                                     Women's clothing
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/category/jewellery" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                                <NavLink to="/category/jewellery" className={({ isActive }) => isActive ? "bg-black text-white" : ""}>
                                     Jewellery
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/category/electronics" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                                <NavLink to="/category/electronics" className={({ isActive }) => isActive ? "bg-black text-white" : ""}>
                                     Electronics
                                 </NavLink>
                             </li>
@@ -113,7 +113,7 @@ function Navbar() {
 
                             <div
                                 tabIndex={0}
-                                className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
+                                className="mt-3 z-30 card card-compact dropdown-content w-52 bg-base-100 shadow"
                             >
                                 {isAuthenticated ? (<div className="card-body">
                                     <span className="font-bold text-lg">{totalItems} Items</span>
@@ -153,7 +153,7 @@ function Navbar() {
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                                className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-100 rounded-box w-52"
                             >
                                 <li>
                                     <a className="justify-between">
@@ -175,7 +175,7 @@ function Navbar() {
 
                                 <ul
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52"
+                                    className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-100 rounded-box w-52"
                                 >
                                     <li>
                                         <Link to="/login">Login</Link>
