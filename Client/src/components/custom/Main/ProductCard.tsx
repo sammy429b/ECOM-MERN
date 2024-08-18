@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ details }) => {
           <div className="mt-2 mb-5 flex items-center justify-between">
             <p>
               <span className="text-xl font-bold text-slate-900">
-                {details.price + "$"}
+                ${details.price}
               </span>
               {/* <span className="text-sm text-slate-900 line-through">$699</span> */}
             </p>
