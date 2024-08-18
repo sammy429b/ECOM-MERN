@@ -17,22 +17,22 @@ interface ProductCardProps {
 }
 
 
-const ProductCard:React.FC<ProductCardProps> = ({ details }) =>{
+const ProductCard: React.FC<ProductCardProps> = ({ details }) => {
 
   const ratecount = Math.round(details.rating.rate);
   const rate = [...Array(ratecount).keys()];
 
- const {handleAddToCart} = useCart();
-//  console.log(cart);
+  const { handleAddToCart } = useCart();
+  //  console.log(cart);
 
- const onClick  = () => {
-    handleAddToCart(details); 
+  const onClick = () => {
+    handleAddToCart(details);
   }
 
   return (
     <>
       <div
-        className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md text-justify hover:shadow-xl"
+        className="relative mx-auto my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md text-justify hover:shadow-xl"
         key={details.id}
       >
         <a

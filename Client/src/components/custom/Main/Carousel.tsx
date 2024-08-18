@@ -8,7 +8,7 @@ const images = [
 function Carousel() {
   return (
     <>
-      <div className="w-full carousel rounded-box">
+      <div className="w-full carousel">
         {images.map((image, index) => (
           <div className="carousel-item w-full" key={index}>
             <img
