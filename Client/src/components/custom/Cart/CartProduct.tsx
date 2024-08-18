@@ -1,5 +1,6 @@
 import { useCart } from '@/context/useCart';
 import { FC } from 'react';
+import { RemoveItems } from './RemoveItem';
 
 interface CartProductProps {
     product: {
@@ -13,9 +14,9 @@ interface CartProductProps {
 }
 
 
-const CartProduct:FC<CartProductProps> = ({ product }) => {
+const CartProduct: FC<CartProductProps> = ({ product }) => {
 
-    const { handleIncreaseQty, handleDecreaseQty } = useCart();
+    const { handleIncreaseQty, handleDecreaseQty} = useCart();
 
     const handleOnClickIncrease = (id: number) => {
         handleIncreaseQty(id);
@@ -24,6 +25,8 @@ const CartProduct:FC<CartProductProps> = ({ product }) => {
     const handleOnClickDecrease = (id: number) => {
         handleDecreaseQty(id);
     };
+
+    
     return (
         <>
             <div
@@ -46,9 +49,14 @@ const CartProduct:FC<CartProductProps> = ({ product }) => {
                             <h6 className="font-normal text-base leading-7 text-gray-500">
                                 {product.category}
                             </h6>
-                            <h6 className="font-medium text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-indigo-600">
-                                ${product.price}
-                            </h6>
+                            <div className='flex justify-start items-center gap-x-4'>
+                                <h6 className="font-medium text-base leading-7 text-gray-600 transition-all duration-300 hover:text-indigo-600">
+                                    ${product.price}
+                                </h6>
+                                <RemoveItems productId={product.id}/>
+                                
+                            </div>
+
                         </div>
                     </div>
                     <div className="flex items-center max-[500px]:justify-center h-full max-md:mt-3">
