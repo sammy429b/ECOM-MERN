@@ -18,9 +18,9 @@ function Navbar() {
 
     return (
         <>
-            <div className="navbar bg-base-100 shadow-md">
+            <div className="navbar bg-white shadow-md">
                 <div className="navbar-start">
-                    <div className="dropdown">
+                    <div className="dropdown bg-white">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
@@ -54,7 +54,7 @@ function Navbar() {
                     </div>
                     <a className="btn btn-ghost text-xl">Upshop</a>
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-center hidden bg-white lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li className="mx-2">
                             <NavLink to="/" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
@@ -84,7 +84,7 @@ function Navbar() {
 
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end bg-white">
                     <div className="flex items-center justify-center gap-x-2">
                         <div className="dropdown dropdown-end">
                             <div
@@ -115,7 +115,7 @@ function Navbar() {
                                 tabIndex={0}
                                 className="mt-3 z-30 card card-compact dropdown-content w-52 bg-base-100 shadow"
                             >
-                                {isAuthenticated ? (<div className="card-body">
+                                {isAuthenticated ? (<div className="card-body bg-white">
                                     <span className="font-bold text-lg">{totalItems} Items</span>
                                     <span className="text-info">Subtotal: ${totalPrice}</span>
                                     <div className="card-actions">
@@ -127,7 +127,7 @@ function Navbar() {
                                     </div>
                                 </div>)
                                     : (
-                                        <div className="card-body">
+                                        <div className="card-body bg-white">
                                             <span className="font-bold text-lg">{totalItems} Items</span>
                                             <span className="text-info">Subtotal: ${totalPrice}</span>
                                             <div className="card-actions">
@@ -138,7 +138,7 @@ function Navbar() {
                                         </div>)}
                             </div>
                         </div>
-                        {isAuthenticated ? (<div className="dropdown dropdown-end">
+                        {isAuthenticated ? (<div className="dropdown dropdown-end bg-white">
                             <div
                                 tabIndex={0}
                                 role="button"
@@ -170,7 +170,7 @@ function Navbar() {
                             </ul>
                         </div>)
                             :
-                            (<div className="dropdown dropdown-end">
+                            (<div className="dropdown dropdown-end bg-white">
                                 <button className="btn">Login</button>
 
                                 <ul
