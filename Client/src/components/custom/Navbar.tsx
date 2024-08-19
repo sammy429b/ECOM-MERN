@@ -171,7 +171,7 @@ function Navbar() {
                         </div>)
                             :
                             (<div className="dropdown dropdown-end bg-white">
-                                <button className="btn btn-secondary">Login</button>
+                                <button className="btn btn-ghost">Login</button>
 
                                 <ul
                                     tabIndex={0}
