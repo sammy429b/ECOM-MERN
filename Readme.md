@@ -24,7 +24,7 @@
 
     ```bash
     git clone https://github.com/sammy429b/ECOM-MERN.git
-    cd UserAuthSys
+    cd ECOM-MERN
     ```
 
 
@@ -66,7 +66,7 @@
 
 
 
-## How I Did It?
+<!-- ## How I Did It? -->
 
 ### Key Steps
 
@@ -88,18 +88,6 @@
 6. **Responsive UI Design**:
    - Developed a responsive UI with React.js and Shadcn.
 
-<!-- ## Future Enhancements
-
-1. **Role-Based Access Control (RBAC)**:
-   - Implement different user roles (e.g., admin, user) with specific permissions.
-2. **OAuth Integration**:
-   - Add support for third-party authentication providers like Google, Facebook, and GitHub.
-3. **Rate Limiting**:
-   - Implement rate limiting to protect against brute-force attacks.
-4. **Enhanced Security**:
-   - Add features like account lockout after multiple failed login attempts and email verification.
-5. **Scalability Improvements**:
-   - Optimize the system for better performance under high load conditions, including horizontal scaling strategies. -->
 
 
 
